@@ -537,6 +537,13 @@ $("#remotedatapage").live("pagecreate", function (event) {
 
 });
 
+$("#splashscreenpage").live("pagecreate", function (event) {
+    $("#splashScreenButton").live("click", function (e) {
+        navigator.splashscreen.show();
+        setTimeout(function() {navigator.splashscreen.hide();}, 3000);
+    });
+});
+
 var backbuttonFunction;
 
 
