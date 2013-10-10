@@ -536,12 +536,51 @@ $("#remotedatapage").live("pagecreate", function (event) {
 
 
 });
+var iabRef = null;
+
+function changeBackgroundColor() {
+    iabRef.insertCSS({
+        code: "body { background: #ffff00}"
+    }, function() {
+        alert("Styles Altered");
+    });
+} 
+
+function replaceHeaderImage() {
+    iabRef.executeScript({
+        code: "var img=document.querySelector('#header img'); img.src='http://cordova.apache.org/images/cordova_bot.png';"
+    }, function() {
+        alert("Image Element Successfully Hijacked");
+    });
+}
+
+function iabClose(event) {
+     alert("Closing inAppBrowser");
+     iabRef.removeEventListener('loadstop', changeBackgroundColor);
+     iabRef.removeEventListener('loadstop', replaceHeaderImage);
+     iabRef.removeEventListener('exit', iabClose);
+}
 
 $("#splashscreenpage").live("pagecreate", function (event) {
     $("#splashScreenButton").live("click", function (e) {
         navigator.splashscreen.show();
         setTimeout(function() {navigator.splashscreen.hide();}, 3000);
     });
+});
+
+$("#inappbrowserpage").live("pagecreate", function (event) {
+    
+    $("#inAppInsertCss").live("click", function (e) {
+         iabRef = window.open('http://apache.org', '_blank', 'location=yes');
+         iabRef.addEventListener('loadstop', changeBackgroundColor);
+         iabRef.addEventListener('exit', iabClose);  
+    });
+
+    $("#inAppExecScript").live("click", function (e) {
+         iabRef = window.open('http://apache.org', '_blank', 'location=yes');
+         iabRef.addEventListener('loadstop', replaceHeaderImage);
+         iabRef.addEventListener('exit', iabClose);    
+     });
 });
 
 var backbuttonFunction;
