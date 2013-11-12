@@ -583,6 +583,24 @@ $("#inappbrowserpage").live("pagecreate", function (event) {
      });
 });
 
+$("#childbrowserpage").live("pagecreate", function (event) {
+    $("#childBrShowWebPage").live("click", function (e) {
+        window.plugins.childBrowser.showWebPage('http://edition.cnn.com/', { showLocationBar: true });
+        
+        window.plugins.childBrowser.onLocationChange = function (url) {
+            alert('childBrowser has loaded ' + url);
+        };
+        
+        window.plugins.childBrowser.onClose = function () {
+            alert('Closing ChildBrowser');
+            window.plugins.childBrowser.onLocationChange = null;
+            window.plugins.childBrowser.onClose = null;
+        };
+
+    });
+});
+
+
 var backbuttonFunction;
 
 
