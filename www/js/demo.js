@@ -5,12 +5,12 @@ function getPhoneGapPath() {
     return phoneGapPath;
 };
 
-$("#notificationpage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#notificationpage", function (event) {
 
     alertDismissed = function () {
     }
 
-    $("#alertLink").live("click", function (e) {
+    $("#alertLink").on("click", function (e) {
         navigator.notification.alert('You did the alert!', // message
             alertDismissed, // callback
             'Alert Demo', // title
@@ -25,7 +25,7 @@ $("#notificationpage").live("pagecreate", function (event) {
 
     // Show a custom confirmation dialog
     //
-    $("#confirmLink").live("click", function (e) {
+    $("#confirmLink").on("click", function (e) {
         navigator.notification.confirm(
             'You did the confirm!',  // message
             onConfirm,              // callback to invoke with index of button pressed
@@ -35,17 +35,17 @@ $("#notificationpage").live("pagecreate", function (event) {
         e.preventDefault();
     });
 
-    $("#beepLink").live("click", function () {
+    $("#beepLink").on("click", function () {
         navigator.notification.beep(2);
     });
 
-    $("#vibrationLink").live("click", function () {
+    $("#vibrationLink").on("click", function () {
         navigator.notification.vibrate(2000);
     });
 
 });
 
-$("#devicepage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#devicepage", function (event) {
 
     //load up device info as a string
     var s = "";
@@ -59,7 +59,7 @@ $("#devicepage").live("pagecreate", function (event) {
 
 });
 
-$("#connectionpage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#connectionpage", function (event) {
 
     var networkState = navigator.network.connection.type;
     var states = {};
@@ -78,15 +78,15 @@ $("#connectionpage").live("pagecreate", function (event) {
 
 });
 
-$("#accelerometerpage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#accelerometerpage", function (event) {
     var page = $("#accelerometerpage");
     var watchID = null;
 
     onCurrentSuccess = function (acceleration) {
         var s = 'Acceleration X: ' + acceleration.x + '<br/>' +
-            'Acceleration Y: ' + acceleration.y + '<br/>' +
-            'Acceleration Z: ' + acceleration.z + '<br/>' +
-            'Timestamp: ' + new Date(acceleration.timestamp) + '<br/>';
+            	'Acceleration Y: ' + acceleration.y + '<br/>' +
+            	'Acceleration Z: ' + acceleration.z + '<br/>' +
+            	'Timestamp: ' + new Date(acceleration.timestamp) + '<br/>';
         $("#status", page).html(s);
     };
 
@@ -94,19 +94,19 @@ $("#accelerometerpage").live("pagecreate", function (event) {
         $("#status", page).html("An error with the accelerometer. Sorry");
     };
 
-    $("#currentLink").live("click", function (e) {
+    $("#currentLink").on("click", function (e) {
         $("#status", page).html("Getting accelerometer...<br/>");
         navigator.accelerometer.getCurrentAcceleration(onCurrentSuccess, onAccError);
         e.preventDefault();
     });
 
-    $("#startTrackingLink").live("click", function (e) {
+    $("#startTrackingLink").on("click", function (e) {
         $("#status", page).html("Tracking began...<br/>");
         watchID = navigator.accelerometer.watchAcceleration(onCurrentSuccess, onAccError, {frequency: 1000});
         e.preventDefault();
     });
 
-    $("#stopTrackingLink").live("click", function (e) {
+    $("#stopTrackingLink").on("click", function (e) {
         $("#status", page).html("Tracking stopped...<br/>");
         if (watchID) {
             navigator.accelerometer.clearWatch(watchID);
@@ -118,7 +118,7 @@ $("#accelerometerpage").live("pagecreate", function (event) {
 
 });
 
-$("#compasspage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#compasspage", function (event) {
     var page = $("#compasspage");
     var watchCompassID = null;
 
@@ -134,19 +134,19 @@ $("#compasspage").live("pagecreate", function (event) {
         $("#status", page).html("An error with the compass. Sorry");
     };
 
-    $("#currentLink", page).live("click", function (e) {
+    $("#currentLink", page).on("click", function (e) {
         $("#status", page).html("Getting compass...<br/>");
         navigator.compass.getCurrentHeading(onCurrentCompassSuccess, onCompassError);
         e.preventDefault();
     });
 
-    $("#startTrackingLink", page).live("click", function (e) {
+    $("#startTrackingLink", page).on("click", function (e) {
         $("#status", page).html("Tracking began...<br/>");
         watchCompassID = navigator.compass.watchHeading(onCurrentCompassSuccess, onCompassError);
         e.preventDefault();
     });
 
-    $("#stopTrackingLink", page).live("click", function (e) {
+    $("#stopTrackingLink", page).on("click", function (e) {
         $("#status", page).html("Tracking stopped...<br/>");
         if (watchCompassID) {
             navigator.compass.clearWatch(watchCompassID);
@@ -158,7 +158,7 @@ $("#compasspage").live("pagecreate", function (event) {
 
 });
 
-$("#geolocationpage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#geolocationpage", function (event) {
     var page = $("#geolocationpage");
     var watchGeoID = null;
 
@@ -180,19 +180,19 @@ $("#geolocationpage").live("pagecreate", function (event) {
         $("#status", page).html("An error with the geolocation. Sorry");
     };
 
-    $("#currentLink", page).live("click", function (e) {
+    $("#currentLink", page).on("click", function (e) {
         $("#status", page).html("Getting location...<br/>");
         navigator.geolocation.getCurrentPosition(onCurrentGeoSuccess, onGeoError);
         e.preventDefault();
     });
 
-    $("#startTrackingLink", page).live("click", function (e) {
+    $("#startTrackingLink", page).on("click", function (e) {
         $("#status", page).html("Tracking began...<br/>");
         watchGeoID = navigator.geolocation.watchPosition(onCurrentGeoSuccess, onGeoError);
         e.preventDefault();
     });
 
-    $("#stopTrackingLink", page).live("click", function (e) {
+    $("#stopTrackingLink", page).on("click", function (e) {
         $("#status", page).html("Tracking stopped...<br/>");
         if (watchGeoID) {
             navigator.geolocation.clearWatch(watchGeoID);
@@ -204,10 +204,10 @@ $("#geolocationpage").live("pagecreate", function (event) {
 
 });
 
-$("#contactpage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#contactpage", function (event) {
     var page = this;
 
-    $("#createContactLink").live("click", function (e) {
+    $("#createContactLink").on("click", function (e) {
         $("#status", page).html("Creating a contact...<br/>");
         var contact = navigator.contacts.create({
             "displayName": "Random Dude" + Math.floor(Math.random() * 100)
@@ -254,7 +254,7 @@ $("#contactpage").live("pagecreate", function (event) {
 
     };
 
-    $("#contactsearch").live("click", function (e) {
+    $("#contactsearch").on("click", function (e) {
         var searchterm = $.trim($("#contactname").val());
         if (searchterm == "") return;
         $("#status", page).html("Searching contacts...<br/>");
@@ -269,7 +269,7 @@ $("#contactpage").live("pagecreate", function (event) {
 
 });
 
-$("#camerapage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#camerapage", function (event) {
     var page = this;
 
 
@@ -282,12 +282,12 @@ $("#camerapage").live("pagecreate", function (event) {
         $("#status", page).html("An error with the camera. Sorry");
     };
 
-    $("#newPicLink").live("click", function (e) {
+    $("#newPicLink").on("click", function (e) {
         navigator.camera.getPicture(onCamSuccess, onCamError, {sourceType: Camera.PictureSourceType.CAMERA, destinationType: Camera.DestinationType.DATA_URL, quality: 50, targetWidth: 200, targetHeight: 200});
         e.preventDefault();
     });
 
-    $("#existingPicLink").live("click", function (e) {
+    $("#existingPicLink").on("click", function (e) {
         navigator.camera.getPicture(onCamSuccess, onCamError, {sourceType: Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.DATA_URL, quality: 50, targetWidth: 200, targetHeight: 200});
         e.preventDefault();
     });
@@ -296,7 +296,7 @@ $("#camerapage").live("pagecreate", function (event) {
 
 //Credit for a lot of this logic goes to @Jagautier, Julian Gautier. I had a REAL hard
 //time with the deferred stuff and he helped quite a bit.
-$("#capturepage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#capturepage", function (event) {
     var page = this;
 
     var deferredTask = function (mediafile) {
@@ -351,24 +351,24 @@ $("#capturepage").live("pagecreate", function (event) {
         $("#status", page).html("An error with the capture. Sorry");
     };
 
-    $("#captureAudioLink").live("click", function (e) {
+    $("#captureAudioLink").on("click", function (e) {
         navigator.device.capture.captureAudio(onCaptureSuccess, onCaptureError, {});
         e.preventDefault();
     });
 
-    $("#capturePictureLink").live("click", function (e) {
+    $("#capturePictureLink").on("click", function (e) {
         navigator.device.capture.captureImage(onCaptureSuccess, onCaptureError, {limit: 2});
         e.preventDefault();
     });
 
-    $("#captureVideoLink").live("click", function (e) {
+    $("#captureVideoLink").on("click", function (e) {
         navigator.device.capture.captureVideo(onCaptureSuccess, onCaptureError, {});
         e.preventDefault();
     });
 
 });
 
-$("#mediapage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#mediapage", function (event) {
     var page = this;
     var mediaStatus;
 
@@ -381,7 +381,7 @@ $("#mediapage").live("pagecreate", function (event) {
 
     var myMedia = new Media(getPhoneGapPath() + 'media/midnight-ride.mp3', mediaSuccess, mediaError);
 
-    $("#mediaplayLink").live("click", function (e) {
+    $("#mediaplayLink").on("click", function (e) {
         myMedia.play();
         mediaStatus = setInterval(function () {
             myMedia.getCurrentPosition(
@@ -392,11 +392,11 @@ $("#mediapage").live("pagecreate", function (event) {
         }, 1000);
         e.preventDefault();
     });
-    $("#mediapauseLink").live("click", function (e) {
+    $("#mediapauseLink").on("click", function (e) {
         myMedia.pause();
         e.preventDefault();
     });
-    $("#mediastopLink").live("click", function (e) {
+    $("#mediastopLink").on("click", function (e) {
         $("#status", page).html("");
         clearInterval(mediaStatus);
         myMedia.stop();
@@ -406,7 +406,7 @@ $("#mediapage").live("pagecreate", function (event) {
 
 });
 
-$("#storagepage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#storagepage", function (event) {
     var page = this;
     var db = window.openDatabase("mydb", "1.0", "Mega Demo", 1000000);
     var dbReady = false;
@@ -437,7 +437,7 @@ $("#storagepage").live("pagecreate", function (event) {
     //Note, we are going to check dbReady status here and handle it,
     //but in theory it would be better to simply disable the buttons and then
     //renable them. It happens so quick though I don't think it matter.
-    $("#storageShowLink").live("click", function (e) {
+    $("#storageShowLink").on("click", function (e) {
         if (!dbReady) {
             alert("Database not quite ready - try again...");
             return;
@@ -448,7 +448,7 @@ $("#storagepage").live("pagecreate", function (event) {
         e.preventDefault();
     });
 
-    $("#storageAddLink").live("click", function (e) {
+    $("#storageAddLink").on("click", function (e) {
         if (!dbReady) {
             alert("Database not quite ready - try again...");
             return;
@@ -463,8 +463,8 @@ $("#storagepage").live("pagecreate", function (event) {
 
 });
 
-$("#barcodepage").live("pagecreate", function (event) {
-    $("#scan-code").live("click", function (e) {
+$(document).on("pagecreate", "#barcodepage", function (event) {
+    $("#scan-code").on("click", function (e) {
         window.plugins.barcodeScanner.scan(
             function (result) {
                 alert("Scanned Code: " + result.text
@@ -475,7 +475,7 @@ $("#barcodepage").live("pagecreate", function (event) {
             });
     });
 
-    $("#encode-text").live("click", function (e) {
+    $("#encode-text").on("click", function (e) {
         window.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.TEXT_TYPE,
             "This text was encoded",
@@ -486,7 +486,7 @@ $("#barcodepage").live("pagecreate", function (event) {
             });
     });
 
-    $("#encode-email").live("click", function (e) {
+    $("#encode-email").on("click", function (e) {
         window.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.EMAIL_TYPE,
             "surname.name@gmail.com", function (success) {
@@ -496,7 +496,7 @@ $("#barcodepage").live("pagecreate", function (event) {
             });
     });
 
-    $("#encode-phone").live("click", function (e) {
+    $("#encode-phone").on("click", function (e) {
         window.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.PHONE_TYPE,
             "777 77 77", function (success) {
@@ -506,7 +506,7 @@ $("#barcodepage").live("pagecreate", function (event) {
             });
     });
 
-    $("#encode-sms").live("click", function (e) {
+    $("#encode-sms").on("click", function (e) {
         window.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.SMS_TYPE,
             "An important message for someone", function (success) {
@@ -517,10 +517,10 @@ $("#barcodepage").live("pagecreate", function (event) {
     });
 });
 
-$("#remotedatapage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#remotedatapage", function (event) {
     var page = this;
 
-    $("#getDataLink").live("click", function (e) {
+    $("#getDataLink").on("click", function (e) {
         $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
             {
                 tags: "mount hotham",
@@ -561,30 +561,30 @@ function iabClose(event) {
      iabRef.removeEventListener('exit', iabClose);
 }
 
-$("#splashscreenpage").live("pagecreate", function (event) {
-    $("#splashScreenButton").live("click", function (e) {
+$(document).on("pagecreate", "#splashscreenpage", function (event) {
+    $("#splashScreenButton").on("click", function (e) {
         navigator.splashscreen.show();
         setTimeout(function() {navigator.splashscreen.hide();}, 3000);
     });
 });
 
-$("#inappbrowserpage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#inappbrowserpage", function (event) {
     
-    $("#inAppInsertCss").live("click", function (e) {
+    $("#inAppInsertCss").on("click", function (e) {
          iabRef = window.open('http://apache.org', '_blank', 'location=yes');
          iabRef.addEventListener('loadstop', changeBackgroundColor);
          iabRef.addEventListener('exit', iabClose);  
     });
 
-    $("#inAppExecScript").live("click", function (e) {
+    $("#inAppExecScript").on("click", function (e) {
          iabRef = window.open('http://apache.org', '_blank', 'location=yes');
          iabRef.addEventListener('loadstop', replaceHeaderImage);
          iabRef.addEventListener('exit', iabClose);    
      });
 });
 
-$("#childbrowserpage").live("pagecreate", function (event) {
-    $("#childBrShowWebPage").live("click", function (e) {
+$(document).on("pagecreate", "#childbrowserpage", function (event) {
+    $("#childBrShowWebPage").on("click", function (e) {
         window.plugins.childBrowser.showWebPage('http://edition.cnn.com/', { showLocationBar: true });
         
         window.plugins.childBrowser.onLocationChange = function (url) {
@@ -604,7 +604,7 @@ $("#childbrowserpage").live("pagecreate", function (event) {
 var backbuttonFunction;
 
 
-$("#eventpage").live("pagehide", function (event) {
+$(document).on("pagehide", "#eventpage", function (event) {
     document.removeEventListener("backbutton", backbuttonFunction, false);
     document.removeEventListener("menubutton", menubuttonFunction, false);
     document.removeEventListener("searchbutton", searchbuttonFunction, false);
@@ -612,7 +612,7 @@ $("#eventpage").live("pagehide", function (event) {
 });
 
 //Todo - I may want to deregister the event handlers on page exit
-$("#eventpage").live("pagecreate", function (event) {
+$(document).on("pagecreate", "#eventpage", function (event) {
     var page = this;
 
     backbuttonFunction = function () {
