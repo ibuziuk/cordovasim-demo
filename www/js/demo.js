@@ -465,7 +465,7 @@ $(document).on("pagecreate", "#storagepage", function (event) {
 
 $(document).on("pagecreate", "#barcodepage", function (event) {
     $("#scan-code").on("click", function (e) {
-        window.plugins.barcodeScanner.scan(
+        cordova.plugins.barcodeScanner.scan(
             function (result) {
                 alert("Scanned Code: " + result.text
                     + ". Format: " + result.format
@@ -476,7 +476,7 @@ $(document).on("pagecreate", "#barcodepage", function (event) {
     });
 
     $("#encode-text").on("click", function (e) {
-        window.plugins.barcodeScanner.encode(
+        cordova.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.TEXT_TYPE,
             "This text was encoded",
             function (success) {
@@ -487,7 +487,7 @@ $(document).on("pagecreate", "#barcodepage", function (event) {
     });
 
     $("#encode-email").on("click", function (e) {
-        window.plugins.barcodeScanner.encode(
+        cordova.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.EMAIL_TYPE,
             "surname.name@gmail.com", function (success) {
                 alert("Encode success: " + success);
@@ -497,7 +497,7 @@ $(document).on("pagecreate", "#barcodepage", function (event) {
     });
 
     $("#encode-phone").on("click", function (e) {
-        window.plugins.barcodeScanner.encode(
+        cordova.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.PHONE_TYPE,
             "777 77 77", function (success) {
                 alert("Encode success: " + success);
@@ -507,7 +507,7 @@ $(document).on("pagecreate", "#barcodepage", function (event) {
     });
 
     $("#encode-sms").on("click", function (e) {
-        window.plugins.barcodeScanner.encode(
+        cordova.plugins.barcodeScanner.encode(
             BarcodeScanner.Encode.SMS_TYPE,
             "An important message for someone", function (success) {
                 alert("Encode success: " + success);

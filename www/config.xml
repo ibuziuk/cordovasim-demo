@@ -1,43 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="cordovasim.demo" version="1.0.0">
-    <name>Cordovasim demo</name>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="cordovasim.demo" version="1.0.0">
+	<name>Cordovasim demo</name>
 
-    <description>
-    </description>
+	<description/>
 
-    <author email="" href="">
-       JBoss by Red Hat
-    </author>
-    
-  <plugins>
-    <plugin name="App" value="org.apache.cordova.App"/>
-    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
-    <plugin name="Device" value="org.apache.cordova.Device"/>
-    <plugin name="Accelerometer" value="org.apache.cordova.AccelListener"/>
-    <plugin name="Compass" value="org.apache.cordova.CompassListener"/>
-    <plugin name="Media" value="org.apache.cordova.AudioHandler"/>
-    <plugin name="Camera" value="org.apache.cordova.CameraLauncher"/>
-    <plugin name="Contacts" value="org.apache.cordova.ContactManager"/>
-    <plugin name="File" value="org.apache.cordova.FileUtils"/>
-    <plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager"/>
-    <plugin name="Notification" value="org.apache.cordova.Notification"/>
-    <plugin name="Storage" value="org.apache.cordova.Storage"/>
-    <plugin name="FileTransfer" value="org.apache.cordova.FileTransfer"/>
-    <plugin name="Capture" value="org.apache.cordova.Capture"/>
-    <plugin name="Battery" value="org.apache.cordova.BatteryListener"/>
-    <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
-    <plugin name="Echo" value="org.apache.cordova.Echo" />
-    <plugin name="Globalization" value="org.apache.cordova.Globalization"/>
-    <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser"/>
-</plugins>
-    
-    
-    <feature name="http://api.phonegap.com/1.0/device"/>
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
-    
 
-    <preference name="orientation" value="default"/>
-    <preference name="target-device" value="universal"/>
-    <preference name="fullscreen" value="false"/>
+	<author email="" href="">
+		JBoss by Red Hat
+	</author>
 
-    <access origin="*"/>
+	<plugins>
+		<plugin name="App" value="org.apache.cordova.App"/>
+		<plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
+		<plugin name="Device" value="org.apache.cordova.Device"/>
+		<plugin name="Accelerometer" value="org.apache.cordova.AccelListener"/>
+		<plugin name="Compass" value="org.apache.cordova.CompassListener"/>
+		<plugin name="Media" value="org.apache.cordova.AudioHandler"/>
+		<plugin name="Camera" value="org.apache.cordova.CameraLauncher"/>
+		<plugin name="Contacts" value="org.apache.cordova.ContactManager"/>
+		<plugin name="File" value="org.apache.cordova.FileUtils"/>
+		<plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager"/>
+		<plugin name="Notification" value="org.apache.cordova.Notification"/>
+		<plugin name="Storage" value="org.apache.cordova.Storage"/>
+		<plugin name="FileTransfer" value="org.apache.cordova.FileTransfer"/>
+		<plugin name="Capture" value="org.apache.cordova.Capture"/>
+		<plugin name="Battery" value="org.apache.cordova.BatteryListener"/>
+		<plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+		<plugin name="Echo" value="org.apache.cordova.Echo"/>
+		<plugin name="Globalization" value="org.apache.cordova.Globalization"/>
+		<plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser"/>
+
+		<plugin name="ChildBrowser" value="com.phonegap.plugins.childBrowser.ChildBrowser"/>
+	
+            <plugin name="ChildBrowser" value="com.phonegap.plugins.childBrowser.ChildBrowser"/>
+        </plugins>
+
+
+	<feature name="http://api.phonegap.com/1.0/device"/>
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="BarcodeScanner">
+		<param name="ios-package" value="CDVBarcodeScanner"/>
+		<param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner"/>
+		<param name="wp-package" value="BarcodeScanner"/>
+		<param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner"/>
+		<param name="ios-package" value="CDVBarcodeScanner"/>
+		<param name="id" value="com.phonegap.plugins.barcodescanner"/>
+	</feature>
+
+
+	<preference name="orientation" value="default"/>
+	<preference name="target-device" value="universal"/>
+	<preference name="fullscreen" value="false"/>
+
+	<access origin="*"/>
 </widget>
